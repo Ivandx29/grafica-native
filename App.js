@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Dimensions, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TextInput, Button, Layout } from 'react-native';
 import { VictoryScatter, VictoryChart, VictoryTheme, VictoryLine } from "victory-native";
 
 const App = () => {
@@ -62,36 +62,38 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Text className="text-slate-900 text-justify text-md font-bold mt-2">Grafica de una Pendiente</Text>
+      <Text className="text-slate-900 text-justify text-md font-bold mt-4">Grafica de una Pendiente</Text>
       <TextInput
-        style={styles.input}
+        className="rounded-md border-blue-400 border-2 h-11 w-80 mt-4"
         onChangeText={setTextX}
         value={textX}
         placeholder="Ingrese el valor de X"
         keyboardType="numeric"
       />
       <TextInput
-        style={styles.input}
+        className="rounded-md border-blue-400 border-2 h-11 w-80 mt-4"
         onChangeText={setTextY}
         value={textY}
         placeholder="Ingrese el valor de Y"
         keyboardType="numeric"
       />
-      <Button
-        onPress={addData}
-        title="Agregar"
-        color="#5DADE2"
-      />
-      <Button
-        onPress={removeData}
-        title="Borrar Grafica"
-        color="#FF0000"
-      />
-      <Button
-        onPress={obtenerPendiente}
-        title="Obtener Pendiente"
-        color="#2ECC71"
-      />
+      <View className="columns-6">
+        <Button
+          onPress={addData}
+          title="Agregar"
+          color="#5DADE2"
+        />
+        <Button
+          onPress={removeData}
+          title="Borrar Grafica"
+          color="#FF0000"
+        />
+        <Button
+          onPress={obtenerPendiente}
+          title="Obtener Pendiente"
+          color="#2ECC71"
+        />
+      </View>
       <VictoryChart domain={{ x: [0.5, 14], y: [0, 14] }} width={400} theme={VictoryTheme.material}>
         <VictoryLine data={graficaPendiente} x="x" y="y" />
         <VictoryScatter data={data} x="x" y="y" />
@@ -107,7 +109,6 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     marginTop: Dimensions.get('window').height * 0.08,
   },
